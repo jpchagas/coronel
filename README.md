@@ -1,16 +1,45 @@
-# React + Vite
+## 🔧 Installation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# Clone the repo
+git clone https://github.com/your-username/your-repo-name.git
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Navigate to the directory
+cd your-repo-name
 
-## React Compiler
+``` bash
+```
+1) Install
+``` bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2) Run dev server
+``` bash
+npm run dev
+```
+ 3) Open http://localhost:5173
 
-## Expanding the ESLint configuration
+### Deployment
+``` bash
+npm run build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+``` bash
+npm run preview 
+```
+
+``` bash
+firebase deploy --only hosting
+
+
+
+# Enhecements:
+# Add menu and navigation at the Home Screen
+# Create Profile, Meds, Alerts, Metrics Screen
+# Integrate with Firebase for Login and Storage
+# Side menu at the Home Screen
+# PWA icons + splash screens p/ celular
+# Criar UI dos cards do dashboard
+# Criar coleta de métricas (pressão, batimento, sintomas)
+# Persistir sessão com localStorage

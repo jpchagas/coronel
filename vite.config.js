@@ -17,12 +17,12 @@ export default defineConfig({
         orientation: 'portrait',
         icons: [
           {
-            src: '/coronel_logo_192.png',
+            src: 'coronel_logo_192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: '/coronel_logo_512.png',
+            src: 'coronel_logo_512.png',
             sizes: '512x512',
             type: 'image/png'
           }
