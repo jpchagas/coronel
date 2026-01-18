@@ -1,19 +1,14 @@
-import { useState } from "react";
 import {
   AppBar,
   Toolbar,
   Typography,
   IconButton,
-  Drawer,
-  List,
-  ListItemButton,
-  ListItemText,
   Box,
   Button,
   BottomNavigation,
   BottomNavigationAction,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import AddIcon from "@mui/icons-material/Add";
 import HomeIcon from "@mui/icons-material/Home";
 import HistoryIcon from "@mui/icons-material/History";
 import PersonIcon from "@mui/icons-material/Person";
@@ -21,21 +16,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
 export default function Home({ user, onLogout }) {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const location = useLocation();
   const navigate = useNavigate();
-
-  const menuItems = [
-    { label: "Dashboard", path: "/home" },
-    { label: "Histórico", path: "/home/history" },
-    { label: "Perfil", path: "/home/profile" },
-    { label: "Configurações", path: "/home/settings" },
-  ];
-
-  const goTo = (path) => {
-    navigate(path);
-    setDrawerOpen(false);
-  };
+  const location = useLocation();
 
   return (
     <Box
@@ -45,41 +27,46 @@ export default function Home({ user, onLogout }) {
         flexDirection: "column",
       }}
     >
-      {/* App Bar FIXA */}
+      {/* FIXED APP BAR */}
       <AppBar position="fixed">
-        <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={() => setDrawerOpen(true)}>
-            <MenuIcon />
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          
+          {/* Botão "+" AGORA À ESQUERDA */}
+          <IconButton
+            edge="start"
+            color="inherit"
+            onClick={() => alert("Adicionar item!")}
+          >
+            <AddIcon />
           </IconButton>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+
+          {/* TÍTULO CENTRALIZADO */}
+          <Typography
+            variant="h6"
+            sx={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
             Coronel
           </Typography>
+
+          {/* Logout alinhado à direita */}
           <Button color="inherit" onClick={onLogout}>
             Sair
           </Button>
         </Toolbar>
       </AppBar>
 
-      {/* Drawer lateral */}
-      <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <Box sx={{ width: 250 }} role="presentation">
-          <List>
-            {menuItems.map((item) => (
-              <ListItemButton key={item.path} onClick={() => goTo(item.path)}>
-                <ListItemText primary={item.label} />
-              </ListItemButton>
-            ))}
-          </List>
-        </Box>
-      </Drawer>
 
-      {/* CONTEÚDO ROLÁVEL */}
+      {/* SCROLLABLE CONTENT */}
       <Box
         flexGrow={1}
         overflow="auto"
         sx={{
-          mt: "64px",       // espaço do AppBar
-          mb: "56px",       // espaço do BottomNav
+          mt: "64px", // espaço do AppBar
+          mb: "56px", // espaço do BottomNav
         }}
       >
         <Box className="screen-container" sx={{ p: 2 }}>
@@ -87,7 +74,7 @@ export default function Home({ user, onLogout }) {
         </Box>
       </Box>
 
-      {/* Bottom Navigation FIXO no rodapé */}
+      {/* FIXED BOTTOM NAV */}
       <BottomNavigation
         showLabels
         value={location.pathname}
@@ -98,26 +85,10 @@ export default function Home({ user, onLogout }) {
           width: "100%",
         }}
       >
-        <BottomNavigationAction
-          label="Dashboard"
-          value="/home"
-          icon={<HomeIcon />}
-        />
-        <BottomNavigationAction
-          label="Histórico"
-          value="/home/history"
-          icon={<HistoryIcon />}
-        />
-        <BottomNavigationAction
-          label="Perfil"
-          value="/home/profile"
-          icon={<PersonIcon />}
-        />
-        <BottomNavigationAction
-          label="Config"
-          value="/home/settings"
-          icon={<SettingsIcon />}
-        />
+        <BottomNavigationAction label="Dashboard" value="/home" icon={<HomeIcon />} />
+        <BottomNavigationAction label="Histórico" value="/home/history" icon={<HistoryIcon />} />
+        <BottomNavigationAction label="Perfil" value="/home/profile" icon={<PersonIcon />} />
+        <BottomNavigationAction label="Config" value="/home/settings" icon={<SettingsIcon />} />
       </BottomNavigation>
     </Box>
   );
