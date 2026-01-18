@@ -10,12 +10,19 @@ import {
   ListItemText,
   Box,
   Button,
+  BottomNavigation,
+  BottomNavigationAction,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Outlet, useNavigate } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+import HistoryIcon from "@mui/icons-material/History";
+import PersonIcon from "@mui/icons-material/Person";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
 export default function Home({ user, onLogout }) {
-  const [open, setOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
 
   const menuItems = [
@@ -27,15 +34,21 @@ export default function Home({ user, onLogout }) {
 
   const goTo = (path) => {
     navigate(path);
-    setOpen(false);
+    setDrawerOpen(false);
   };
 
   return (
-    <Box minHeight="100vh" className="screen-container">
-      {/* App Bar */}
-      <AppBar position="static">
+    <Box
+      sx={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {/* App Bar FIXA */}
+      <AppBar position="fixed">
         <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={() => setOpen(true)}>
+          <IconButton edge="start" color="inherit" onClick={() => setDrawerOpen(true)}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
@@ -47,8 +60,8 @@ export default function Home({ user, onLogout }) {
         </Toolbar>
       </AppBar>
 
-      {/* Drawer */}
-      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
+      {/* Drawer lateral */}
+      <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <Box sx={{ width: 250 }} role="presentation">
           <List>
             {menuItems.map((item) => (
@@ -60,10 +73,52 @@ export default function Home({ user, onLogout }) {
         </Box>
       </Drawer>
 
-      {/* Page Content */}
-      <Box p={2}>
-        <Outlet />
+      {/* CONTEÚDO ROLÁVEL */}
+      <Box
+        flexGrow={1}
+        overflow="auto"
+        sx={{
+          mt: "64px",       // espaço do AppBar
+          mb: "56px",       // espaço do BottomNav
+        }}
+      >
+        <Box className="screen-container" sx={{ p: 2 }}>
+          <Outlet />
+        </Box>
       </Box>
+
+      {/* Bottom Navigation FIXO no rodapé */}
+      <BottomNavigation
+        showLabels
+        value={location.pathname}
+        onChange={(e, newValue) => navigate(newValue)}
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          width: "100%",
+        }}
+      >
+        <BottomNavigationAction
+          label="Dashboard"
+          value="/home"
+          icon={<HomeIcon />}
+        />
+        <BottomNavigationAction
+          label="Histórico"
+          value="/home/history"
+          icon={<HistoryIcon />}
+        />
+        <BottomNavigationAction
+          label="Perfil"
+          value="/home/profile"
+          icon={<PersonIcon />}
+        />
+        <BottomNavigationAction
+          label="Config"
+          value="/home/settings"
+          icon={<SettingsIcon />}
+        />
+      </BottomNavigation>
     </Box>
   );
 }
