@@ -27,6 +27,7 @@ export default function Splash({ user }) {
       bgcolor="#ffffff"
       textAlign="center"
       p={2}
+      className="screen-container"
     >
       <img src="/coronel_logo.png" alt="Coronel Logo" width={180} />
       <Typography variant="h4" mt={2}>

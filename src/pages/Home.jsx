@@ -31,7 +31,7 @@ export default function Home({ user, onLogout }) {
   };
 
   return (
-    <Box minHeight="100vh">
+    <Box minHeight="100vh" className="screen-container">
       {/* App Bar */}
       <AppBar position="static">
         <Toolbar>

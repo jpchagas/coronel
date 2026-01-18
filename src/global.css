@@ -1,0 +1,16 @@
+/* Remove scroll indesejado e limita a largura para mobile */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: sans-serif;
+}
+
+/* Contêiner padrão para telas */
+.screen-container {
+  max-width: 420px;
+  margin: 0 auto;         /* centraliza em telas grandes */
+  padding: 16px;
+}

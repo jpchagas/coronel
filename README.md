@@ -35,10 +35,8 @@ firebase deploy --only hosting
 
 
 # Enhecements:
-# Add menu and navigation at the Home Screen
-# Create Profile, Meds, Alerts, Metrics Screen
+# Adjust the Sceerns size to be fits with mobile
 # Integrate with Firebase for Login and Storage
-# Side menu at the Home Screen
 # PWA icons + splash screens p/ celular
 # Criar UI dos cards do dashboard
 # Criar coleta de métricas (pressão, batimento, sintomas)

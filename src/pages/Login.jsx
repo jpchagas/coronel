@@ -54,6 +54,7 @@ export default function Login({ onLogin }) {
       minHeight="100vh"
       bgcolor="#f5f5f5"
       p={2}
+      className="screen-container"
     >
       <Paper elevation={3} sx={{ p: 3, width: "100%", maxWidth: 360 }}>
         <Typography variant="h5" align="center" gutterBottom>
